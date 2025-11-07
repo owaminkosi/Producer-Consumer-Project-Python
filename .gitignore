@@ -1,0 +1,8 @@
+# Python Caching
+__pycache__/
+
+#Generated XML folder
+student_xmls/
+
+# OS files
+.DS_Store
