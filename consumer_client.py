@@ -1,9 +1,10 @@
+import random
 import socket
 import time
 import sys
 import xml.etree.ElementTree as ET
 # Import our class and functions
-from student_handler import ITstudent, unwrap_from_xml_string # We will define this helper function
+from student_handler import ITstudent # We will define this helper function
 
 # --- Network Configuration ---
 HOST = '127.0.0.1' 
