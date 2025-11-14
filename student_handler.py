@@ -3,8 +3,8 @@ import random
 import os
 
 # --- 1. Data Lists for Generator ---
-FIRST_NAMES = ["Alice", "Bob", "Charlie", "David", "Emily", "Fiona", "George", "Hannah", "Ian", "Julia"]
-LAST_NAMES = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez"]
+FIRST_NAMES = ["Thobiswa", "Boitumelo", "Sanelisiwe", "Michael", "Masiko", "Nkosephayo", "Welile", "Cebsile", "Mukelwe", "Sabelo"]
+LAST_NAMES = ["Mdziniso", "Nxumalo", "Gwebu", "Mhlanga", "Dlamini", "Ginindza", "Nxumalo", "Mkhonta", "Dlamini", "Matsebula"]
 PROGRAMMES = ["Computer Science", "Information Technology", "Data Science", "Cybersecurity", "Software Engineering"]
 COURSES_LIST = ["Programming 101", "Databases", "Networking", "Web Development", "AI and Machine Learning", "Operating Systems", "Data Structures"]
 
