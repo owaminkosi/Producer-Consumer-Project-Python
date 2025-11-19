@@ -6,17 +6,24 @@ import os
 # Import all our functions from the first file
 from student_handler import ITstudent, generate_random_student, wrap_to_xml, unwrap_from_xml
 
-# --- 1. Shared State and Constants ---
+#1. Shared State and Constants
 MAX_SIZE = 10
-XML_DIR = "student_xmls"  # A dedicated folder for our XML files
+
+# A dedicated folder for our XML files
+XML_DIR = "student_xmls"  
 
 # The shared buffer that holds the file numbers (1-10)
 buffer = [] 
 
-# The three key synchronization primitives
-mutex = threading.Lock() # For Rule 3: Mutual Exclusion
-empty_slots = threading.Semaphore(MAX_SIZE) # For Rule 1: Producer waits if full
-full_slots = threading.Semaphore(0)        # For Rule 2: Consumer waits if empty
+# The three key synchronization basics
+#Rule 3: Mutual Exclusion
+mutex = threading.Lock() 
+
+# For Rule 1: Producer waits if full
+empty_slots = threading.Semaphore(MAX_SIZE) 
+
+# For Rule 2: Consumer waits if empty
+full_slots = threading.Semaphore(0)        
 
 # --- 2. The Producer Thread Function ---
 def producer():
@@ -133,7 +140,7 @@ if __name__ == "__main__":
     
     print("--- Threads are running. Press Ctrl+C to stop. ---")
     
-    # Keep the main thread alive to let daemons run
+    # Keep the main thread alive to let background process run and handles service requests
     try:
         while True:
             time.sleep(1)

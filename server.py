@@ -66,22 +66,22 @@ def handle_consumer(conn):
     global buffer
 
     # 1. Wait for data in the buffer
+    # Buffer is empty (Rule 2 enforcement)
     while True:
         with buffer_lock:
             if len(buffer) > 0:
                 # Buffer has data, proceed to send
                 break
             else:
-                # Buffer is empty (Rule 2 enforcement)
-                # Send a 'wait' signal or simply pause this thread (easier)
                 print("Server: Consumer waiting, buffer is empty.")
+                #pause the thread or apply a 'wait signal'
         
         time.sleep(1)
 
     # 2. Remove from the buffer (CRITICAL SECTION)
     with buffer_lock:
         xml_string = buffer.pop(0)
-        print(f"🔴 Server: Removed item for consumer. Size: {len(buffer)}/{MAX_SIZE}")
+        print(f"🔴 Server: Item removeds. Size: {len(buffer)}/{MAX_SIZE}")
 
     # 3. Send the XML string back to the client
     xml_data = xml_string.encode('utf-8')
