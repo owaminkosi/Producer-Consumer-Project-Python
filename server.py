@@ -5,26 +5,27 @@ import random
 import os
 import sys
 
-# --- Network Configuration ---
+#Network Configuration
 HOST = '127.0.0.1' # Localhost
 PORT = 65432       # Port to listen on
 
-# --- Buffer State (Shared Resource) ---
+#Buffer State (Shared Resource)
+#Buffer size declaration
 MAX_SIZE = 10
 buffer = [] # Stores the XML string data
 buffer_lock = threading.Lock() # Protects the buffer list
 
-# --- Utility Function for XML Handling (Since clients will send XML data, 
-#     the server only needs to store the string, not save files) ---
+# Utility Function for XML Handling; Since clients will send XML data
+#  the server stores the strings no the files
 # We will use the XML functions from student_handler on the clients.
 
-# --- Client Handler Functions ---
+# Client Handler Function
 
 def handle_producer(conn):
     """Handles incoming data from a Producer Client."""
     global buffer
     
-    # 1. Receive data size header (e.g., "1200")
+    # 1. Receive data size header
     try:
         data_size_header = conn.recv(1024).decode()
         data_size = int(data_size_header.split(":")[1])
@@ -32,7 +33,7 @@ def handle_producer(conn):
         print("Server: Producer header error.")
         return
 
-    # 2. Wait for space in the buffer
+    # 2. Wait for empty space in the buffer
     while True:
         with buffer_lock:
             if len(buffer) < MAX_SIZE:
@@ -132,4 +133,5 @@ if __name__ == "__main__":
         server_listener()
     except KeyboardInterrupt:
         print("\nServer shutting down.")
+
         sys.exit(0)
