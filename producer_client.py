@@ -6,19 +6,19 @@ import sys
 from student_handler import generate_random_student, wrap_to_xml
 import xml.etree.ElementTree as ET
 
-# --- Network Configuration ---
+#Network configuration for producer side
 HOST = '127.0.0.1' 
 PORT = 65432       
 ROLE = "PRODUCER"
 
-# --- Producer Logic ---
+#Producer Logic ---
 def run_producer_client():
     
     while True:
         # 1. Produce the item (Generate student data)
         student = generate_random_student()
         
-        # Convert student to XML string (not a file)
+        # Convert student to XML string 
         root = ET.Element("ITstudent")
         # Reuse wrapping logic to populate the Element Tree
         ET.SubElement(root, "Name").text = student.name
@@ -66,3 +66,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\nProducer Client shutting down.")
         sys.exit(0)
+
